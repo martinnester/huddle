@@ -17,22 +17,6 @@
 		form = signup;
 	};
 
-	// const formSync = <
-	// 	A extends Pick<RemoteForm<RemoteFormInput, unknown>, 'fields'>,
-	// 	B extends Pick<RemoteForm<RemoteFormInput, unknown>, 'fields'>
-	// >(
-	// 	a: A,
-	// 	b: B,
-	// 	field: (x: A['fields'] | B['fields']) => RemoteFormField<RemoteFormFieldValue>
-	// ) => {
-	// 	$effect(() => {
-	// 		field(a.fields).set(field(b.fields).value());
-	// 	});
-	// 	$effect(() => {
-	// 		field(b.fields).set(field(a.fields).value());
-	// 	});
-	// };
-	// formSync(signup, login, (x) => x.fields);
 	$effect(() => {
 		signup.fields.username.set(login.fields.username.value());
 	});
