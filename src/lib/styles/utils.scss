@@ -1,0 +1,59 @@
+@use './vars.scss' as *;
+
+@mixin transition($properties) {
+	transition-property: $properties;
+	transition-timing-function: ease;
+	transition-duration: 200ms;
+}
+@function transparent($color, $alpha) {
+	@return oklab(from $color l a b / $alpha);
+}
+@mixin round-ends() {
+	&:first-child {
+		border-top-left-radius: var(--border-radius);
+		border-top-right-radius: var(--border-radius);
+	}
+	&:last-child {
+		border-bottom-left-radius: var(--border-radius);
+		border-bottom-right-radius: var(--border-radius);
+	}
+}
+@mixin focus-outline-transition {
+	@include transition((outline-width, border-color, border-radius));
+}
+@mixin focus-outline($color) {
+	$outline-color: color-mix(in oklab, $color 50%, var(--background));
+
+	border-color: $color;
+	border-radius: var(--border-radius);
+	outline-width: var(--spacing);
+	outline-style: solid;
+	outline-color: $outline-color;
+	z-index: 1;
+}
+
+@mixin amp($when-input-is, $or_not: false) {
+	$other: '&:not(&)';
+	@if $or_not {
+		$other: '&:not(:has(input))';
+	}
+	&:has(input:is(#{$when-input-is})),
+	#{$other} {
+		@content;
+	}
+}
+@mixin section {
+	background-color: transparent(var(--foreground), 0.03);
+	display: block; // this was meant to be applied to input orginally than i moved to .field which is already 'block'
+	border: var(--border-width) solid transparent(var(--foreground), 0.1);
+	position: relative;
+	@include round-ends();
+	@include amp(':not(:focus):not(#{$invalid})', true) {
+		&:not(:first-child) {
+			border-top-width: calc(var(--border-width) * 0.5);
+		}
+		&:not(:last-child) {
+			border-bottom-width: calc(var(--border-width) * 0.5);
+		}
+	}
+}

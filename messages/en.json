@@ -1,0 +1,12 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"signup_heading": "Huddle Sign-up",
+	"login_heading": "Huddle Log-in",
+	"signup": "Sign-up",
+	"login": "Log-in",
+	"username": "Username",
+	"password": "Password",
+	"confirm_password": "Confirm Password",
+	"cancel": "Cancel",
+	"invalid_login": "The provided credentials were invalid"
+}

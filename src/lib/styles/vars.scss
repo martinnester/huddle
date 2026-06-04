@@ -1,0 +1,4 @@
+$spacing-vertical: var(--spacing);
+$spacing-horizontal: max(var(--border-radius), var(--spacing));
+
+$invalid: "[aria-invalid='true']";
